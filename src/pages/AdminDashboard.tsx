@@ -60,6 +60,7 @@ import {
   updateSettings,
   getStats
 } from '../lib/api';
+import { ASSET_IMAGES } from '../assets/images';
 
 interface AdminDashboardProps {
   onBackToSite: () => void;
@@ -113,7 +114,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     price: 2500,
     currency: '₹',
     durationMinutes: 75,
-    image: '/src/assets/images/nail_art_couture_showcase_1791786283381.jpg',
+    image: ASSET_IMAGES.nailArt,
     featured: false,
     active: true
   });
@@ -124,7 +125,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
     title: '',
     category: 'Couture Nail Art',
     studio: 'nails',
-    imageUrl: '/src/assets/images/nail_art_couture_showcase_1791786283381.jpg',
+    imageUrl: ASSET_IMAGES.nailArt,
     caption: '',
     featured: false
   });
@@ -841,7 +842,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
                     price: 2500,
                     currency: '₹',
                     durationMinutes: 75,
-                    image: '/src/assets/images/nail_art_couture_showcase_1791786283381.jpg',
+                    image: ASSET_IMAGES.nailArt,
                     featured: false,
                     active: true
                   });

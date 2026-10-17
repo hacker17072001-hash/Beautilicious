@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Remix Beautilicious by Ketna</title>
+    <script type="text/javascript">
+      // GitHub Pages SPA route redirector
+      var l = window.location;
+      var path = l.pathname;
+      var segments = path.split('/').filter(Boolean);
+      // If deployed in a subdirectory repo like username.github.io/repo-name/
+      var repo = segments.length > 0 ? '/' + segments[0] : '';
+      var subRoute = segments.slice(1).join('/');
+      var target = l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + repo + '/#' + (subRoute || 'home');
+      window.location.replace(target);
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to Beautilicious by Ketna...</p>
+  </body>
+</html>

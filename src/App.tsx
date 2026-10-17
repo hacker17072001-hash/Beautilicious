@@ -34,12 +34,12 @@ export default function App() {
   // Lightbox modal
   const [activeLightboxItem, setActiveLightboxItem] = useState<GalleryItem | null>(null);
 
-  // Check URL pathname or hash for admin
+  // Check URL pathname or hash for navigation
   useEffect(() => {
     const handleUrlRoute = () => {
       const path = window.location.pathname;
-      const hash = window.location.hash;
-      if (path === '/admin' || hash === '#admin') {
+      const hash = window.location.hash.toLowerCase();
+      if (path.endsWith('/admin') || hash === '#admin') {
         setCurrentTab('admin');
       } else if (hash === '#services') {
         setCurrentTab('services');
@@ -51,12 +51,18 @@ export default function App() {
         setCurrentTab('story');
       } else if (hash === '#contact') {
         setCurrentTab('contact');
+      } else if (hash === '#home' || hash === '') {
+        setCurrentTab('home');
       }
     };
 
     handleUrlRoute();
     window.addEventListener('popstate', handleUrlRoute);
-    return () => window.removeEventListener('popstate', handleUrlRoute);
+    window.addEventListener('hashchange', handleUrlRoute);
+    return () => {
+      window.removeEventListener('popstate', handleUrlRoute);
+      window.removeEventListener('hashchange', handleUrlRoute);
+    };
   }, []);
 
   const loadData = async () => {
@@ -85,12 +91,15 @@ export default function App() {
   const handleNavigate = (tab: string) => {
     setCurrentTab(tab);
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (tab === 'admin') {
-      window.history.pushState(null, '', '/admin');
-    } else if (tab === 'home') {
-      window.history.pushState(null, '', '/');
+    if (tab === 'home') {
+      // Remove hash without wiping the repository subpath on GitHub Pages
+      if (window.history.pushState) {
+        window.history.pushState(null, '', window.location.pathname + window.location.search);
+      } else {
+        window.location.hash = '';
+      }
     } else {
-      window.history.pushState(null, '', `/#${tab}`);
+      window.location.hash = `#${tab}`;
     }
   };
 
