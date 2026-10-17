@@ -1,0 +1,8 @@
+{
+  "name": "Remix Beautilicious by Ketna | Luxury Beauty \u0026 Nail Studio 2",
+  "description": "Editorial soft luxury beauty studio and bespoke nail artistry by Ketna. Explore curated beauty services, couture nail design, and schedule appointments online.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
